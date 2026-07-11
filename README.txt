@@ -1,5 +1,10 @@
-HighLevel Penang Takeover v1.2 SMART FLOW
+HighLevel Penang Takeover v1.3 — Functional Fix
 
-Upload index.html and the complete images folder to the root of your GitHub Pages repository. Set Pages to main / root.
+Fixes:
+- Route tabs work reliably on iPhone Safari.
+- Today’s Energy buttons now update the route and visibly highlight matching stops.
+- Go With The Flow renders as a working fourth route, including Surprise Me.
+- Nearby is restored to category tiles such as Waterfront, Coffee, Street Art and A/C Escape.
+- Nearby categories perform one-tap Google Maps searches around your live location.
 
-New: Go With The Flow route, eight functional Today's Energy modes, live weather-aware recommendations, location-sorted curated nearby places, smarter food guidance, saved route/energy choices, and Surprise Me.
+Upload index.html and the images folder to the root of your GitHub repository.
