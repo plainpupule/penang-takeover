@@ -200,6 +200,14 @@ function startWanderTracking(force=false){
  },()=>{setLocationMode('preview',pierPosition);if(force)alert('Location permission was not available. Wander Mode is previewing from Swettenham Pier.');renderRoutes();},{enableHighAccuracy:true,timeout:12000,maximumAge:30000});
 }
 function enableConciergeLocation(force=false){startWanderTracking(force)}
+function setLocationMode(mode,position){
+ locationMode=mode;
+ userPosition=position;
+ const live=mode==='live';
+ if(modeStatus)modeStatus.classList.toggle('live',live);
+ if(modeTitle)modeTitle.textContent=live?'Live Mode':'Preview Mode';
+ if(modeText)modeText.textContent=live?'Using your current location in Penang':'Previewing from Swettenham Pier';
+}
 
 function dismissArrival(){arrivalOverlay.classList.remove('show');saveSetting('arrivalDismissed','1')}
 function smartRecommendation(route,energy){
