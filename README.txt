@@ -1,5 +1,5 @@
-Upload index.html and the images folder to the root of your GitHub repository. GitHub Pages: main / root.
+HighLevel Penang Takeover v1.2 SMART FLOW
 
-Version 1.1 adds functional Today's Energy, expanded food decision guide, and new local attraction photography with Highly composited into the scene.
+Upload index.html and the complete images folder to the root of your GitHub Pages repository. Set Pages to main / root.
 
-Photo credits for adapted Wikimedia Commons images are listed in PHOTO-CREDITS.txt.
+New: Go With The Flow route, eight functional Today's Energy modes, live weather-aware recommendations, location-sorted curated nearby places, smarter food guidance, saved route/energy choices, and Surprise Me.
