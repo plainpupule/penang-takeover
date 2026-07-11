@@ -1,10 +1,11 @@
-HighLevel Penang Takeover v1.3 — Functional Fix
+HIGHLEVEL PENANG TAKEOVER — v1.4 GPS CONCIERGE
 
-Fixes:
-- Route tabs work reliably on iPhone Safari.
-- Today’s Energy buttons now update the route and visibly highlight matching stops.
-- Go With The Flow renders as a working fourth route, including Surprise Me.
-- Nearby is restored to category tiles such as Waterfront, Coffee, Street Art and A/C Escape.
-- Nearby categories perform one-tap Google Maps searches around your live location.
+Upload index.html, the images folder, README.txt and PHOTO-CREDITS.txt to the root of your GitHub repository.
 
-Upload index.html and the images folder to the root of your GitHub repository.
+GitHub Pages: main branch / root.
+
+New in v1.4:
+- Go With The Flow recommendations sorted by live GPS walking distance
+- Distance badges in minutes
+- Recommendations influenced by Today’s Energy, weather and ship buffer
+- Nearby category map remains unchanged

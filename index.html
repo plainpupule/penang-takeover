@@ -18,6 +18,10 @@
 .nearCategory{display:block;text-decoration:none;color:inherit;padding:16px;border-radius:18px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);min-height:94px}
 .nearCategory strong{display:block;margin-top:7px;font-size:15px}.nearCategory small{color:var(--muted);line-height:1.3}
 @media(min-width:700px){.nearCategoryGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+.conciergePanel{margin:14px 0;padding:18px;background:linear-gradient(145deg,rgba(27,30,46,.99),rgba(13,15,24,.99));border:1px solid rgba(118,86,255,.38);border-radius:24px;box-shadow:var(--shadow)}
+.conciergeHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.conciergeHead h3{margin:3px 0 5px;font-size:23px}.conciergeGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.conciergeCard{display:block;text-decoration:none;color:#fff;padding:14px;border-radius:18px;background:#11141f;border:1px solid var(--line);min-height:132px;position:relative}.conciergeCard:hover{border-color:rgba(118,86,255,.65)}.conciergeIcon{font-size:26px;margin-bottom:8px}.conciergeName{font-weight:900;line-height:1.15;padding-right:58px}.conciergeWhy{font-size:12px;color:var(--muted);line-height:1.38;margin-top:7px}.distanceBadge{position:absolute;right:10px;top:10px;padding:6px 8px;border-radius:999px;background:rgba(67,214,156,.12);border:1px solid rgba(67,214,156,.35);color:#b8f5dd;font-size:11px;font-weight:900}.conciergeMeta{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.miniTag{font-size:10px;font-weight:850;padding:5px 7px;border-radius:999px;background:#1c2030;color:#d7daea}.locationBar{padding:12px 13px;border-radius:16px;background:rgba(67,214,156,.08);border:1px solid rgba(67,214,156,.28);margin:10px 0 13px;font-size:13px;line-height:1.45}.locationActions{display:flex;gap:8px;flex-wrap:wrap}.smallBtn{border:0;border-radius:12px;padding:9px 11px;background:#292d42;color:#fff;font-weight:850;cursor:pointer}.smallBtn.primary{background:var(--purple)}
+@media(max-width:620px){.conciergeGrid{grid-template-columns:1fr 1fr}.conciergeCard{min-height:145px;padding:13px}.conciergeName{font-size:14px;padding-right:48px}.distanceBadge{font-size:10px}}
 </style>
 </head>
 <body>
@@ -38,7 +42,7 @@
       <div class="card weatherCard loading" id="weatherCard"><div class="weatherIcon" id="weatherIcon">⛅</div><div><div class="eyebrow">Penang Weather</div><div class="weatherMain" id="weatherMain">Checking the forecast…</div><div class="muted" id="weatherAdvice">Highly is consulting the clouds.</div></div><div class="weatherMeta" id="weatherMeta">Live weather needs Wi‑Fi.</div></div>
     </div>
     <div class="goodMorning" id="goodMorning"><div class="eyebrow">Good Morning, Penang ☀️</div><h2>Welcome to George Town.</h2><div class="arrivalCopy" id="morningText">You made it. Now let’s make the next five hours count — without making the ship wait.</div></div>
-    <div class="heading"><h2>Choose your adventure</h2><div class="muted">Same day, three different energies.</div></div>
+    <div class="heading"><h2>Choose your adventure</h2><div class="muted">Four ways to explore. One very good day.</div></div>
     <div class="routeTabs" id="routeTabs"></div>
     <div id="routeContent"></div>
   </div>
@@ -113,6 +117,42 @@ const energyProfiles=[
 {label:'🌈 Main Character Moment',desc:'The prettiest streets, strongest color and cinematic little moments move to the front.',cats:['photo','culture','water'],tip:'Good light is a perfectly valid reason to pause.'},
 {label:'🎒 Local for a Day',desc:'Less checklist, more neighborhood texture, independent spaces and side-street curiosity.',cats:['culture','food','photo'],tip:'The interesting side street gets one vote. Curiosity gets the other.'}
 ]
+
+const conciergePlaces=[
+ {name:'Kids on Bicycle Mural',icon:'🎨',cat:'photo',lat:5.41455,lon:100.33805,why:'An iconic George Town photo stop that works even when you only have ten minutes.',tags:['photo','local'],query:'Kids on Bicycle mural Penang'},
+ {name:'Hin Bus Depot',icon:'🎭',cat:'culture',lat:5.41072,lon:100.32942,why:'Contemporary art, creative spaces and a side of Penang that feels less cruise-excursion.',tags:['culture','local','ac'],query:'Hin Bus Depot Penang'},
+ {name:'Narrow Marrow',icon:'☕',cat:'food',lat:5.41954,lon:100.33373,why:'A stylish coffee stop when the group needs caffeine and a little composure.',tags:['food','local','ac'],query:'Narrow Marrow Penang'},
+ {name:'Penang Road Famous Teochew Chendul',icon:'🍧',cat:'food',lat:5.41754,lon:100.32916,why:'Cold, sweet and extremely persuasive in Penang humidity.',tags:['food','local'],query:'Penang Road Famous Teochew Chendul'},
+ {name:'ChinaHouse',icon:'🍰',cat:'food',lat:5.41472,lon:100.33875,why:'Coffee, cake, art and a cool-down stop that can rescue everyone’s mood.',tags:['food','culture','ac'],query:'ChinaHouse Penang'},
+ {name:'Chew Jetty',icon:'🌊',cat:'water',lat:5.41172,lon:100.34074,why:'Wooden walkways, waterfront views and an easy dose of atmosphere.',tags:['photo','local'],query:'Chew Jetty Penang'},
+ {name:'Fort Cornwallis & Esplanade',icon:'🌴',cat:'history',lat:5.42072,lon:100.34375,why:'Open waterfront, colonial history and room to breathe before the ship.',tags:['history','photo','local'],query:'Fort Cornwallis Penang'},
+ {name:'Kapitan Keling Mosque',icon:'🕌',cat:'spiritual',lat:5.41784,lon:100.33796,why:'A graceful exterior stop in the heart of George Town’s cultural crossroads.',tags:['culture','history','photo'],query:'Kapitan Keling Mosque'},
+ {name:'Sri Mahamariamman Temple',icon:'🛕',cat:'spiritual',lat:5.41568,lon:100.33963,why:'Color, sculpture and spiritual detail tucked directly into Little India.',tags:['culture','history','photo'],query:'Sri Mahamariamman Temple Penang'},
+ {name:'Pinang Peranakan Mansion',icon:'🏺',cat:'history',lat:5.41711,lon:100.34279,why:'A richly decorated indoor stop with the added luxury of air conditioning.',tags:['history','culture','ac'],query:'Pinang Peranakan Mansion'},
+ {name:'Cheong Fatt Tze Blue Mansion',icon:'💙',cat:'photo',lat:5.42162,lon:100.33551,why:'The indigo icon. Even an exterior-only visit delivers.',tags:['photo','history','culture'],query:'Cheong Fatt Tze Blue Mansion'},
+ {name:'Khoo Kongsi',icon:'🏛️',cat:'culture',lat:5.41490,lon:100.33939,why:'Intricate clan-house architecture that rewards anyone who looks up.',tags:['culture','history','photo'],query:'Khoo Kongsi Penang'},
+ {name:'Little India',icon:'🌈',cat:'culture',lat:5.41642,lon:100.34042,why:'Music, garlands, spice shops and instant atmosphere.',tags:['culture','food','photo','local'],query:'Little India George Town Penang'},
+ {name:'Swettenham Pier',icon:'🚢',cat:'ship',lat:5.41970,lon:100.34540,why:'The one recommendation that becomes more attractive every minute after 3:05.',tags:['ship'],query:'Swettenham Pier Cruise Terminal'}
+];
+function walkingMinutes(km){return Math.max(1,Math.round((km/4.5)*60))}
+function mapsDirections(place){return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.query||place.name+', Penang')}&travelmode=walking`}
+function energyKeywords(){const label=energyProfiles[activeEnergy].label; if(label.includes('Camera')||label.includes('Character'))return ['photo'];if(label.includes('Stomach'))return ['food'];if(label.includes('Lore'))return ['history','culture'];if(label.includes('A/C'))return ['ac'];if(label.includes('Local'))return ['local'];return []}
+function rankedConciergePlaces(){
+ if(!userPosition)return [];
+ const now=penangNow(), mins=now.getHours()*60+now.getMinutes(), wanted=energyKeywords();
+ return conciergePlaces.map(p=>{const km=kmBetween(userPosition.lat,userPosition.lon,p.lat,p.lon);let score=km; if(wanted.some(t=>p.tags.includes(t)))score-=0.45;if(mins>=905&&p.tags.includes('ship'))score-=5;if(mins>=890&&!p.tags.includes('ship'))score+=1.5;if(latestWeather&&(latestWeather.feels>=95||latestWeather.rain>=50)&&p.tags.includes('ac'))score-=0.55;return {...p,km,walk:walkingMinutes(km),score}}).sort((a,b)=>a.score-b.score);
+}
+function conciergeMarkup(){
+ if(!userPosition)return `<div class="conciergePanel"><div class="eyebrow">GPS concierge</div><h3 style="margin:5px 0 7px">What’s the best next move?</h3><div class="muted">Share your location and Highly will sort nearby ideas by walking distance, today’s energy, weather and your ship buffer.</div><button class="btn primary" style="width:100%;margin-top:14px" onclick="enableConciergeLocation()">📍 Use my location</button></div>`;
+ const picks=rankedConciergePlaces().slice(0,6),pier=kmBetween(userPosition.lat,userPosition.lon,5.41970,100.34540);
+ return `<div class="conciergePanel"><div class="conciergeHead"><div><div class="eyebrow">Closest good ideas</div><h3>Highly looked around.</h3><div class="muted">Sorted for <strong>${energyProfiles[activeEnergy].label}</strong>, live distance and the clock.</div></div><button class="smallBtn" onclick="enableConciergeLocation(true)">↻</button></div><div class="locationBar">📍 About <strong>${pier.toFixed(1)} km from the pier</strong>. ${pier>3?'A strategic Grab later would not be dramatic. It would be wise.':'You’re comfortably within the George Town orbit.'}</div><div class="conciergeGrid">${picks.map(p=>`<a class="conciergeCard" target="_blank" href="${mapsDirections(p)}"><div class="distanceBadge">${p.walk} min</div><div class="conciergeIcon">${p.icon}</div><div class="conciergeName">${p.name}</div><div class="conciergeWhy">${p.why}</div><div class="conciergeMeta">${p.tags.slice(0,2).map(t=>`<span class="miniTag">${t}</span>`).join('')}</div></a>`).join('')}</div></div>`;
+}
+function enableConciergeLocation(force=false){
+ if(!navigator.geolocation){alert('Location is not available in this browser.');return}
+ const button=document.querySelector('.conciergePanel .btn');if(button)button.textContent='📡 Checking your location…';
+ navigator.geolocation.getCurrentPosition(p=>{userPosition={lat:p.coords.latitude,lon:p.coords.longitude};renderRoutes();},()=>alert('I could not access your location. In iPhone Settings, allow Safari location access for this site.'),{enableHighAccuracy:true,timeout:12000,maximumAge:force?0:60000});
+}
+
 const routes=[
 {name:'Eat, Pray, Pose',tagline:'The classics, the culture and the camera roll.',buffer:'Back around 3:20 PM',stops:[['11:20','mosque'],['11:40','campbell'],['12:00','khoo'],['12:30','blue'],['1:00','sun'],['1:30','toh'],['2:00','street'],['2:10','india'],['2:20','peranakan']]},
 {name:'Big Prayer Energy',tagline:'Temple first, then a fast George Town greatest-hits run.',buffer:'Back around 3:30 PM',stops:[['11:25','kek'],['12:30','mosque'],['12:50','campbell'],['1:10','khoo'],['1:40','blue'],['2:15','toh'],['2:50','street']]},
@@ -131,7 +171,8 @@ function renderRoutes(){
  const currentIndex=getCurrentStopIndex(r,now);
  const progress=currentIndex<0?'Your route is ready.':currentIndex>=r.stops.length?'Route window complete.':currentIndex===0?'First stop is up next.':`Live progress: stop ${Math.min(currentIndex+1,r.stops.length)} of ${r.stops.length}.`;
  const e=energyProfiles[activeEnergy];
- const flowExtra=r.flow?`<div class="card flowCard flowPulse"><div class="eyebrow">Not feeling a schedule?</div><h3>Go With The Flow</h3><div class="storyLead">Some of the best travel memories begin with saying yes to something that was not on the itinerary. These stops are anchors, not obligations.</div><div class="flowIdeas"><div class="flowIdea">☕ Start with something good</div><div class="flowIdea">🚶 Take the interesting side street</div><div class="flowIdea">📸 Stop when the light is right</div><div class="flowIdea">🍧 Order the thing you cannot pronounce</div></div><button class="btn primary surpriseBtn" onclick="surpriseMe()">🎲 Surprise Me</button><div id="surpriseResult" class="smartStrip" style="display:none"></div></div>`:'';
+ const flowExtra=r.flow?`<div class="card flowCard flowPulse"><div class="eyebrow">Not feeling a schedule?</div><h3>Go With The Flow</h3><div class="storyLead">Some of the best travel memories begin with saying yes to something that was not on the itinerary. These stops are anchors, not obligations.</div><div class="flowIdeas"><div class="flowIdea">☕ Start with something good</div><div class="flowIdea">🚶 Take the interesting side street</div><div class="flowIdea">📸 Stop when the light is right</div><div class="flowIdea">🍧 Order the thing you cannot pronounce</div></div><button class="btn primary surpriseBtn" onclick="surpriseMe()">🎲 Surprise Me</button><div id="surpriseResult" class="smartStrip" style="display:none"></div></div>${conciergeMarkup()}`:'';
+
  const smart=smartRecommendation(r,e);
  routeContent.innerHTML=`<div class="card routeIntro"><h3>${r.name}</h3><div class="muted">${r.tagline}</div><div class="chip" style="margin-top:12px">🚢 ${r.buffer}</div><div class="eyebrow" style="margin-top:16px">Today’s Energy</div><div class="vibes">${energyProfiles.map((x,i)=>`<button class="vibe ${i===activeEnergy?'active':''}" onclick="selectEnergy(${i})">${x.label}</button>`).join('')}</div><div class="energyNote"><strong>${e.label}</strong><br>${e.desc}<br><span class="muted">${e.tip}</span></div>${smart?`<div class="smartStrip"><strong>✨ Smart nudge</strong><br>${smart}</div>`:''}</div>${flowExtra}<div class="progressNote">📍 ${progress}</div>`+r.stops.map(([time,key],i)=>stopCard(time,attractions[key],e,getStopStatus(r,i,now))).join('')
  bindDynamicButtons();
@@ -297,7 +338,7 @@ async function loadWeather(){
 }
 
 function closeDrawer(){drawer.classList.remove('open')}
-renderRoutes();renderFoodScreen();updateClock();loadWeather();if(navigator.geolocation){navigator.geolocation.getCurrentPosition(p=>{userPosition={lat:p.coords.latitude,lon:p.coords.longitude};updateClock();},()=>{}, {maximumAge:300000,timeout:5000});}setInterval(updateClock,1000);setInterval(renderRoutes,60000);
+renderRoutes();renderFoodScreen();updateClock();loadWeather();if(navigator.geolocation){navigator.geolocation.getCurrentPosition(p=>{userPosition={lat:p.coords.latitude,lon:p.coords.longitude};updateClock();if(routes[activeRoute].flow)renderRoutes();},()=>{}, {maximumAge:300000,timeout:5000});}setInterval(updateClock,1000);setInterval(renderRoutes,60000);
 </script>
-<div style="display:none" id="buildVersion">v1.3-functional-fix</div></body>
+<div style="display:none" id="buildVersion">v1.4-gps-concierge</div></body>
 </html>
