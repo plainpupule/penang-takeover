@@ -1,22 +1,5 @@
-HIGHLEVEL PENANG TAKEOVER — GITHUB PAGES WEBSITE
+HighLevel Penang Takeover website v4 — Captain Edition
 
-Upload BOTH of these items to the ROOT of your GitHub repository:
+Upload index.html and the images folder to the root of your GitHub repository. GitHub Pages: main branch / root.
 
-1. index.html
-2. images folder
-
-Your repository should look like:
-
-index.html
-images/
-  blue-mansion.jpg
-  kek-lok-si.jpg
-  kids-on-bicycle.jpg
-  ...
-
-GitHub Pages settings:
-Source: Deploy from a branch
-Branch: main
-Folder: /(root)
-
-The website uses local image files, so the attraction art will work on GitHub Pages without depending on remote image hosts.
+Changes: clean attraction titles, image crop fix, live route status, Nearby GPS tab, Food Translator tab, Highly callouts, Take Me There and Grab buttons.
