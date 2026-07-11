@@ -1,3 +1,20 @@
-HighLevel Penang Takeover v1.7 — Wander Mode
-Upload index.html and images/ to the GitHub repository root.
-Wander Mode is GPS-driven in Penang and previews from Swettenham Pier outside Penang.
+HighLevel Penang Takeover v1.7.2 — Launch Polish
+
+Upload these items to the ROOT of your GitHub repository:
+- index.html
+- images/
+- README.txt
+- PHOTO-CREDITS.txt
+
+GitHub Pages settings:
+- Source: Deploy from a branch
+- Branch: main
+- Folder: /(root)
+
+New in v1.7.2:
+- Contextual, dismissible Highly nudges
+- Energy match confidence indicator
+- Smoother mobile motion and press feedback
+- Hardened Google Maps destination links
+- Accessibility-friendly reduced-motion support
+- Existing routes, GPS concierge, weather, food guide and Nearby categories preserved
