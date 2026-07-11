@@ -1,15 +1,20 @@
-HIGHLEVEL PENANG TAKEOVER — v1.5 MOBILE LAUNCH
+HighLevel Penang Takeover v1.6 — Launch Polish
 
-Upload index.html, the images folder, README.txt and PHOTO-CREDITS.txt to the root of your GitHub repository.
+Upload these items to the ROOT of your GitHub repository:
+- index.html
+- images/
+- README.txt
+- PHOTO-CREDITS.txt
 
-GitHub Pages: main branch / root.
+GitHub Pages settings:
+- Source: Deploy from a branch
+- Branch: main
+- Folder: /(root)
 
-New in v1.5:
-- Mobile-first layout and larger touch targets
-- Highly floating concierge button
-- Preview Mode from Swettenham Pier when outside Penang
-- Automatic Live Mode when your GPS is within Penang
-- Day-of arrival welcome screen at 11:00 AM Penang time
-- Today’s Energy now clearly explains its route and recommendation impact
-- Nearby categories work in both Preview and Live modes
-- Existing four routes, GPS concierge, food guide, weather and ship risk preserved
+New in v1.6:
+- Contextual, dismissible Highly nudges
+- Energy match confidence indicator
+- Smoother mobile motion and press feedback
+- Hardened Google Maps destination links
+- Accessibility-friendly reduced-motion support
+- Existing routes, GPS concierge, weather, food guide and Nearby categories preserved
