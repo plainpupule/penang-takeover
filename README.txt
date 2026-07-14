@@ -20,3 +20,5 @@ INCLUDED
 - Nearby one-tap categories
 - Need a Hand decision support
 - Google Maps and Grab actions
+
+Update: Rainbow Skywalk added to all three planned routes; weather fetch rebuilt with retry and graceful fallback.
