@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0b12" />
-<title>HighLevel Penang Takeover — Launch Edition</title>
+<title>HighLevel Penang Takeover — Launch Edition · Status Fix</title>
 <!-- Version 1.6 LAUNCH POLISH: contextual concierge, confidence score, motion polish, link hardening -->
 <style>
 :root{--bg:#090a10;--panel:#141622;--panel2:#1b1e2e;--text:#f7f7fb;--muted:#a9afbd;--line:#2b2f42;--purple:#7656ff;--gold:#ffc43d;--green:#43d69c;--yellow:#ffc857;--orange:#ff9857;--red:#ff647c;--shadow:0 18px 60px rgba(0,0,0,.32)}
@@ -96,7 +96,7 @@
   <div id="foodScreenList" class="foodList"></div>
 </div></section>
 
-<section id="infoScreen" class="screen"><div class="section"><div class="heading"><h2>Before you go</h2></div><div class="card routeIntro"><h3>Launch Edition</h3><p class="muted">One polished guide for July 15: timing, routes, food, live context and fast decisions. Use Google Maps for navigation and Grab for rides.</p><div class="tip"><strong>💡 Insider Tip</strong><br>At 3:05 PM, optional shopping and extra photo stops are over. Start moving toward the pier even if the risk meter is not red yet.</div></div></div></section>
+<section id="infoScreen" class="screen"><div class="section"><div class="heading"><h2>Before you go</h2></div><div class="card routeIntro"><h3>Launch Edition · Status Fix</h3><p class="muted">One polished guide for July 15: timing, routes, food, live context and fast decisions. Use Google Maps for navigation and Grab for rides.</p><div class="tip"><strong>💡 Insider Tip</strong><br>At 3:05 PM, optional shopping and extra photo stops are over. Start moving toward the pier even if the risk meter is not red yet.</div></div></div></section>
 </div>
 
 <a class="returnBtn" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=Swettenham+Pier+Cruise+Terminal+Penang&travelmode=driving">🚢 Return</a>
@@ -296,9 +296,9 @@ const flowPrompts=[
 ];
 function surpriseMe(){const el=document.getElementById('surpriseResult');if(!el)return;el.style.display='block';el.innerHTML='<strong>Highly suggests:</strong><br>'+flowPrompts[Math.floor(Math.random()*flowPrompts.length)];}
 function kmBetween(a,b,c,d){const R=6371,toRad=x=>x*Math.PI/180;const dLat=toRad(c-a),dLon=toRad(d-b);const q=Math.sin(dLat/2)**2+Math.cos(toRad(a))*Math.cos(toRad(c))*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(q));}
-function excursionDate(time){const [h,m]=time.split(':').map(Number);return new Date(2026,6,14,h,m,0,0)}
-function getCurrentStopIndex(route,now){const start=new Date(2026,6,14,11,0),end=new Date(2026,6,14,16,0);if(now<start)return -1;if(now>=end)return route.stops.length;for(let i=route.stops.length-1;i>=0;i--){if(now>=excursionDate(route.stops[i][0]))return i}return 0}
-function getStopStatus(route,index,now){const start=new Date(2026,6,14,11,0);if(now<start)return 'upcoming';const here=excursionDate(route.stops[index][0]);const next=index<route.stops.length-1?excursionDate(route.stops[index+1][0]):new Date(2026,6,14,15,5);if(now>=next)return 'completed';if(now>=here)return 'current';return 'upcoming'}
+function excursionDate(time){const [h,m]=time.split(':').map(Number);return new Date(2026,6,15,h,m,0,0)}
+function getCurrentStopIndex(route,now){const start=new Date(2026,6,15,11,0),end=new Date(2026,6,15,16,0);if(now<start)return -1;if(now>=end)return route.stops.length;for(let i=route.stops.length-1;i>=0;i--){if(now>=excursionDate(route.stops[i][0]))return i}return 0}
+function getStopStatus(route,index,now){const start=new Date(2026,6,15,11,0);if(now<start)return 'upcoming';const here=excursionDate(route.stops[index][0]);const next=index<route.stops.length-1?excursionDate(route.stops[index+1][0]):new Date(2026,6,15,15,5);if(now>=next)return 'completed';if(now>=here)return 'current';return 'upcoming'}
 function statusLabel(status){return status==='current'?'📍 You’re here':status==='completed'?'✓ Completed':'Up next'}
 function stopCard(time,a,energy,status){
  const match=energy.cats.includes(a.cat);
@@ -439,52 +439,60 @@ function renderFoodScreen(){renderFoodShortlist();const list=activeFoodFilter===
 
 async function loadWeather(){
  const card=document.getElementById('weatherCard');
+ const iconEl=document.getElementById('weatherIcon');
+ const mainEl=document.getElementById('weatherMain');
+ const adviceEl=document.getElementById('weatherAdvice');
+ const metaEl=document.getElementById('weatherMeta');
+ if(!card||!iconEl||!mainEl||!adviceEl||!metaEl)return;
  card.classList.add('loading');
- document.getElementById('weatherMain').textContent='Checking the forecast…';
- document.getElementById('weatherAdvice').textContent='Penang weather is being consulted.';
- document.getElementById('weatherMeta').textContent='Live update';
+ mainEl.textContent='Checking the forecast…';
+ adviceEl.textContent='One quick weather check, then we are off.';
+ metaEl.textContent='Live update';
+ const cached=(()=>{try{return JSON.parse(localStorage.getItem('penangWeatherCache')||'null')}catch(e){return null}})();
  const controller=new AbortController();
  const timer=setTimeout(()=>controller.abort(),10000);
  try{
-  const url='https://api.open-meteo.com/v1/forecast?latitude=5.4141&longitude=100.3288&current_weather=true&hourly=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation_probability,weather_code&temperature_unit=fahrenheit&timezone=Asia%2FKuala_Lumpur&forecast_days=1';
+  const url='https://api.open-meteo.com/v1/forecast?latitude=5.4141&longitude=100.3288&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,precipitation&hourly=precipitation_probability&temperature_unit=fahrenheit&timezone=Asia%2FKuala_Lumpur&forecast_days=1';
   const r=await fetch(url,{cache:'no-store',signal:controller.signal});
   if(!r.ok)throw new Error('weather '+r.status);
   const d=await r.json();
-  const cw=d.current_weather||{};
-  const times=(d.hourly&&d.hourly.time)||[];
-  let idx=times.findIndex(t=>cw.time&&t.slice(0,13)===cw.time.slice(0,13));
-  if(idx<0&&times.length){
-   const target=Date.parse(cw.time||new Date().toISOString());
-   idx=times.reduce((best,t,i)=>Math.abs(Date.parse(t)-target)<Math.abs(Date.parse(times[best])-target)?i:best,0);
-  }
-  const pick=(name,fallback)=>d.hourly&&d.hourly[name]&&idx>=0?d.hourly[name][idx]:fallback;
-  const temp=Number(cw.temperature??pick('temperature_2m',NaN));
-  const feels=Number(pick('apparent_temperature',temp));
-  const humidity=Number(pick('relative_humidity_2m',NaN));
-  const rain=Number(pick('precipitation_probability',0));
-  const code=Number(cw.weathercode??pick('weather_code',0));
-  if(!Number.isFinite(temp))throw new Error('missing weather data');
-  const icon=code>=95?'⛈️':code>=61?'🌧️':code>=51?'🌦️':code>=2?'⛅':'☀️';
-  latestWeather={rain:Number.isFinite(rain)?rain:0,feels:Number.isFinite(feels)?feels:temp,code};
-  document.getElementById('weatherIcon').textContent=icon;
-  document.getElementById('weatherMain').textContent=`${Math.round(temp)}°F · feels ${Math.round(latestWeather.feels)}°`;
-  document.getElementById('weatherMeta').innerHTML=`Humidity ${Number.isFinite(humidity)?Math.round(humidity)+'%':'—'}<br>Rain chance ${Number.isFinite(rain)?Math.round(rain)+'%':'—'}`;
-  let advice='The humidity is fully committed today. Water first, fabulous decisions second.';
-  if(code>=61)advice='Rain is making a guest appearance. The Rainbow Skywalk may close, so favor indoor heritage stops until it clears.';
-  else if(latestWeather.feels>=95)advice='It feels spicy outside. Use Grab strategically and protect an A/C stop.';
-  else if(rain>=50)advice='Keep an indoor stop in your back pocket. The rooftop skywalk can pause for rain or lightning.';
-  else advice='The sky is cooperating. Rainbow Skywalk is a strong opening move.';
-  document.getElementById('weatherAdvice').textContent=advice;
-  card.classList.remove('loading');
-  renderRoutes();
+  const c=d.current||{};
+  const temp=Number(c.temperature_2m), feels=Number(c.apparent_temperature), humidity=Number(c.relative_humidity_2m), code=Number(c.weather_code);
+  if(!Number.isFinite(temp))throw new Error('missing current temperature');
+  const times=d.hourly?.time||[], probs=d.hourly?.precipitation_probability||[];
+  let idx=times.findIndex(t=>c.time&&t.slice(0,13)===c.time.slice(0,13));
+  const rain=Number(idx>=0?probs[idx]:0)||0;
+  const payload={temp,feels:Number.isFinite(feels)?feels:temp,humidity:Number.isFinite(humidity)?humidity:null,code:Number.isFinite(code)?code:0,rain,ts:Date.now()};
+  try{localStorage.setItem('penangWeatherCache',JSON.stringify(payload))}catch(e){}
+  showWeather(payload,false);
  }catch(e){
-  latestWeather=null;
-  document.getElementById('weatherIcon').textContent='🌤️';
-  document.getElementById('weatherMain').textContent='Live weather unavailable';
-  document.getElementById('weatherAdvice').textContent='The routes still work. Check the sky before Rainbow Skywalk — it closes during rain or lightning.';
-  document.getElementById('weatherMeta').innerHTML='<button class="weatherRetry" onclick="loadWeather()">↻ Retry weather</button>';
-  card.classList.remove('loading');
+  if(cached&&Date.now()-cached.ts<6*60*60*1000){showWeather(cached,true)}
+  else{
+   latestWeather=null;
+   iconEl.textContent='🌤️';
+   mainEl.textContent='Forecast unavailable';
+   adviceEl.textContent='The rest of the guide is ready. Check the sky before Rainbow Skywalk; the rooftop may close for rain or lightning.';
+   metaEl.innerHTML='<button class="weatherRetry" onclick="loadWeather()">↻ Retry</button><br><a href="https://www.google.com/search?q=Penang+weather" target="_blank" rel="noopener" style="color:#b6a8ff">Open live forecast</a>';
+   card.classList.remove('loading');
+  }
  }finally{clearTimeout(timer)}
+}
+function showWeather(w,fromCache){
+ const card=document.getElementById('weatherCard');
+ const code=Number(w.code)||0, temp=Number(w.temp), feels=Number(w.feels), rain=Number(w.rain)||0;
+ const icon=code>=95?'⛈️':code>=61?'🌧️':code>=51?'🌦️':code>=2?'⛅':'☀️';
+ latestWeather={rain,feels,code};
+ document.getElementById('weatherIcon').textContent=icon;
+ document.getElementById('weatherMain').textContent=`${Math.round(temp)}°F · feels ${Math.round(feels)}°`;
+ document.getElementById('weatherMeta').innerHTML=`Humidity ${w.humidity==null?'—':Math.round(w.humidity)+'%'}<br>Rain chance ${Math.round(rain)}%${fromCache?'<br>Last saved forecast':''}`;
+ let advice='The sky is cooperating. Rainbow Skywalk is a strong opening move.';
+ if(code>=61)advice='Rain is making a guest appearance. Favor indoor heritage stops until it clears.';
+ else if(feels>=95)advice='It feels spicy outside. Use Grab strategically and protect an A/C stop.';
+ else if(rain>=50)advice='Keep an indoor stop ready. The rooftop skywalk can pause for rain or lightning.';
+ else if(feels>=88)advice='Warm and humid, because Penang understood the assignment. Hydrate and keep moving.';
+ document.getElementById('weatherAdvice').textContent=advice;
+ card.classList.remove('loading');
+ try{renderRoutes()}catch(e){console.warn('Route refresh after weather failed',e)}
 }
 
 let highlyNudgeTimer=null,lastNudgeKey='';
@@ -505,7 +513,21 @@ function contextualNudge(trigger='timer'){
 }
 
 function closeDrawer(){drawer.classList.remove('open')}
-setLocationMode('preview',pierPosition);if(routes[activeRoute]?.flow)startWanderTracking();renderRoutes();renderFoodScreen();updateClock();loadWeather();refreshLocation(false);setInterval(updateClock,1000);setInterval(renderRoutes,60000);setTimeout(()=>contextualNudge('welcome'),4500);setInterval(()=>contextualNudge('timer'),120000);
+function safeStart(label,fn){try{return fn()}catch(e){console.error(label,e);return null}}
+window.addEventListener('error',e=>console.error('App error:',e.error||e.message));
+safeStart('location mode',()=>setLocationMode('preview',pierPosition));
+safeStart('wander tracking',()=>{if(routes[activeRoute]?.flow)startWanderTracking()});
+safeStart('routes',renderRoutes);
+safeStart('food',renderFoodScreen);
+safeStart('clock',updateClock);
+safeStart('weather',loadWeather);
+safeStart('location refresh',()=>refreshLocation(false));
+setInterval(()=>safeStart('clock interval',updateClock),1000);
+setInterval(()=>safeStart('route interval',renderRoutes),60000);
+setTimeout(()=>safeStart('welcome nudge',()=>contextualNudge('welcome')),4500);
+setInterval(()=>safeStart('nudge interval',()=>contextualNudge('timer')),120000);
+// Never leave the weather card in a permanent loading state.
+setTimeout(()=>{const m=document.getElementById('weatherMain');if(m&&m.textContent.includes('Checking')){document.getElementById('weatherIcon').textContent='🌤️';m.textContent='Tap for the live forecast';document.getElementById('weatherAdvice').textContent='Everything else is ready. Weather can be retried without interrupting your guide.';document.getElementById('weatherMeta').innerHTML='<button class="weatherRetry" onclick="loadWeather()">↻ Retry Weather</button>';document.getElementById('weatherCard')?.classList.remove('loading')}},12000);
 </script>
-<div style="display:none" id="buildVersion">v1.8-penang-eats</div></body>
+<div style="display:none" id="buildVersion">v3.0-stability-release</div></body>
 </html>
