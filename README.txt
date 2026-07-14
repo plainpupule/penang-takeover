@@ -1,20 +1,22 @@
-HighLevel Penang Takeover v1.7.2 — Launch Polish
+HIGHLEVEL PENANG TAKEOVER — VERSION 2.0 LAUNCH EDITION
 
-Upload these items to the ROOT of your GitHub repository:
-- index.html
-- images/
-- README.txt
-- PHOTO-CREDITS.txt
+Correct shore date: Wednesday, July 15, 2026
+Disembark: 11:00 AM Penang time
+Return deadline: 4:00 PM Penang time
 
-GitHub Pages settings:
-- Source: Deploy from a branch
-- Branch: main
-- Folder: /(root)
+UPLOAD TO GITHUB
+1. Upload index.html and the images folder to the repository root.
+2. GitHub Pages: Deploy from branch > main > /(root).
+3. Open the published site on your phone.
 
-New in v1.7.2:
-- Contextual, dismissible Highly nudges
-- Energy match confidence indicator
-- Smoother mobile motion and press feedback
-- Hardened Google Maps destination links
-- Accessibility-friendly reduced-motion support
-- Existing routes, GPS concierge, weather, food guide and Nearby categories preserved
+INCLUDED
+- Correct date-aware countdown and arrival screen
+- Preview Mode and Live GPS Mode
+- Four exploration choices including GPS-driven Wander Mode
+- Today’s Energy recommendations
+- Right Now live-context card
+- Ship Risk and live Penang weather
+- Penang Eats with curated local recommendations
+- Nearby one-tap categories
+- Need a Hand decision support
+- Google Maps and Grab actions

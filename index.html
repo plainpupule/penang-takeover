@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0b12" />
-<title>HighLevel Penang Takeover</title>
+<title>HighLevel Penang Takeover — Launch Edition</title>
 <!-- Version 1.6 LAUNCH POLISH: contextual concierge, confidence score, motion polish, link hardening -->
 <style>
 :root{--bg:#090a10;--panel:#141622;--panel2:#1b1e2e;--text:#f7f7fb;--muted:#a9afbd;--line:#2b2f42;--purple:#7656ff;--gold:#ffc43d;--green:#43d69c;--yellow:#ffc857;--orange:#ff9857;--red:#ff647c;--shadow:0 18px 60px rgba(0,0,0,.32)}
@@ -37,6 +37,10 @@
 @media(max-width:620px){.app{max-width:100%}.section{padding:14px}.hero{min-height:420px;padding:24px 18px}.heroContent{max-width:74%}h1{font-size:50px}.heroHighly{width:48vw;right:-16px;bottom:-9px}.modeBar{margin:10px 12px 0}.routeTab,.vibe,.foodFilter{min-height:44px}.btn{min-height:48px}.stopTitleRow h3{font-size:27px}.photo{height:235px}.quickFacts{grid-template-columns:1fr 1fr}.quickFacts .fact:last-child{grid-column:1/-1}.actions{grid-template-columns:1fr 1fr}.conciergeGrid{grid-template-columns:1fr}.conciergeCard{min-height:112px}.arrivalPanel h2{font-size:36px}.arrivalPanel p{max-width:88%}.arrivalMascot{width:135px;right:-18px;top:-8px}}
 @media(min-width:621px){.app{max-width:760px}.hero{border-radius:0 0 28px 28px}.modeBar{margin-left:18px;margin-right:18px}}
 
+
+.foodShortlist{display:grid;gap:14px;margin:16px 0 20px}.foodPlace{padding:0;overflow:hidden}.foodPlaceHead{padding:17px 17px 8px}.foodPlace h3{margin:5px 0 7px;font-size:21px}.foodPlaceBody{padding:0 17px 17px}.foodBadges{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.foodBadge{font-size:11px;font-weight:800;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}.foodPlaceActions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}.foodPlaceActions .btn{text-align:center}.foodThree{display:grid;gap:8px;margin:12px 0 20px}.foodThreeItem{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}.foodThreeNum{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--purple),#ff4fd8);font-weight:900}.foodLocalNote{padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,rgba(122,83,255,.18),rgba(255,79,216,.08));border:1px solid rgba(173,140,255,.22);margin-bottom:14px}.foodPlace .muted{line-height:1.55}.foodSource{font-size:11px;color:var(--muted);margin-top:9px}
+
+.rightNow{margin:14px 0;padding:18px;background:linear-gradient(145deg,rgba(28,32,48,.98),rgba(13,15,24,.98));border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.rightNowHead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.rightNowHead h2{margin:0;font-size:24px}.rightNowGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.rightNowItem{padding:12px;border-radius:16px;background:#10131d;border:1px solid var(--line);font-size:13px;line-height:1.4}.rightNowItem strong{display:block;color:#fff;margin-bottom:3px}.rightNowItem span{color:var(--muted)}@media(max-width:620px){.rightNowGrid{grid-template-columns:1fr 1fr}.rightNow{padding:16px}}
 </style>
 </head>
 <body>
@@ -45,7 +49,7 @@
   <div class="heroContent">
     <div class="eyebrow">HighLevel</div>
     <h1>Penang<br>Takeover</h1>
-    <div class="chips"><span class="chip">🇲🇾 July 14, 2026</span><span class="chip">11:00 AM–4:00 PM</span><span class="chip" id="penangClock">Penang time</span></div>
+    <div class="chips"><span class="chip">🇲🇾 July 15, 2026</span><span class="chip">11:00 AM–4:00 PM</span><span class="chip" id="penangClock">Penang time</span></div>
   </div>
   <img class="heroHighly" src="images/Highly_Pose_GrabRight.png" alt="Highly, your Penang guide" />
 </header>
@@ -58,8 +62,17 @@
   <div class="section">
     <div class="dashboard">
       <div class="card countCard"><div class="countTitle" id="countTitle">Until we can get off the boat</div><div class="countGrid"><div><div class="countNum" id="days">--</div><div class="countLab">Days</div></div><div><div class="countNum" id="hours">--</div><div class="countLab">Hours</div></div><div><div class="countNum" id="minutes">--</div><div class="countLab">Minutes</div></div></div><div class="muted" id="countNote">Countdown uses Penang time.</div></div>
-      <div class="card riskCard"><div class="riskDot" id="riskDot"></div><div class="eyebrow">Ship Risk</div><h3 id="riskTitle">Pre-trip mode</h3><div class="muted" id="riskText">The shore timer starts automatically July 14 at 11:00 AM.</div></div>
+      <div class="card riskCard"><div class="riskDot" id="riskDot"></div><div class="eyebrow">Ship Risk</div><h3 id="riskTitle">Pre-trip mode</h3><div class="muted" id="riskText">The shore timer starts automatically July 15 at 11:00 AM.</div></div>
       <div class="card weatherCard loading" id="weatherCard"><div class="weatherIcon" id="weatherIcon">⛅</div><div><div class="eyebrow">Penang Weather</div><div class="weatherMain" id="weatherMain">Checking the forecast…</div><div class="muted" id="weatherAdvice">Highly is consulting the clouds.</div></div><div class="weatherMeta" id="weatherMeta">Live weather needs Wi‑Fi.</div></div>
+    </div>
+    <div class="rightNow" id="rightNowCard">
+      <div class="rightNowHead"><div><div class="eyebrow">Live context</div><h2>📍 Right Now</h2></div><span class="chip" id="rightNowMode">Preview</span></div>
+      <div class="rightNowGrid">
+        <div class="rightNowItem"><strong id="rnTime">Penang time</strong><span id="rnTimeText">Checking the clock…</span></div>
+        <div class="rightNowItem"><strong id="rnRisk">Ship timing</strong><span id="rnRiskText">Building your buffer…</span></div>
+        <div class="rightNowItem"><strong id="rnWeather">Weather</strong><span id="rnWeatherText">Checking conditions…</span></div>
+        <div class="rightNowItem"><strong id="rnNext">Best next move</strong><span id="rnNextText">Choose an energy and route.</span></div>
+      </div>
     </div>
     <div class="goodMorning" id="goodMorning"><div class="eyebrow">Good Morning, Penang ☀️</div><h2>Welcome to George Town.</h2><div class="arrivalCopy" id="morningText">You made it. Now let’s make the next five hours count — without making the ship wait.</div></div>
     <div class="heading"><h2>Choose your adventure</h2><div class="muted">Four ways to explore. One very good day.</div></div>
@@ -77,11 +90,13 @@
 </div></section>
 
 <section id="foodScreen" class="screen"><div class="section">
-  <div class="card foodHero"><div class="eyebrow">What am I ordering?</div><h2>🍜 Local Food Translator</h2><div class="muted">Quick explanations, flavor notes and the dishes worth recognizing before you point at a menu.</div></div>
+  <div class="card foodHero"><div class="eyebrow">Eat like someone who already knows where to go</div><h2>🍜 Penang Eats</h2><div class="muted">Real recommendations from locals and frequent visitors, plus a smarter guide to what is actually on the menu.</div></div>
+  <div id="foodShortlist"></div>
+  <div class="heading"><h2>What’s good?</h2><div class="muted">Browse dishes by craving, flavor and first-timer friendliness.</div></div>
   <div id="foodScreenList" class="foodList"></div>
 </div></section>
 
-<section id="infoScreen" class="screen"><div class="section"><div class="heading"><h2>Before you go</h2></div><div class="card routeIntro"><h3>Keep it simple</h3><p class="muted">Use this site for timing, route choices and quick decisions. Use Google Maps for live navigation and Grab for rides.</p><div class="tip"><strong>💡 Insider Tip</strong><br>At 3:05 PM, optional shopping and extra photo stops are over. Start moving toward the pier even if the risk meter is not red yet.</div></div></div></section>
+<section id="infoScreen" class="screen"><div class="section"><div class="heading"><h2>Before you go</h2></div><div class="card routeIntro"><h3>Launch Edition</h3><p class="muted">One polished guide for July 15: timing, routes, food, live context and fast decisions. Use Google Maps for navigation and Grab for rides.</p><div class="tip"><strong>💡 Insider Tip</strong><br>At 3:05 PM, optional shopping and extra photo stops are over. Start moving toward the pier even if the risk meter is not red yet.</div></div></div></section>
 </div>
 
 <a class="returnBtn" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=Swettenham+Pier+Cruise+Terminal+Penang&travelmode=driving">🚢 Return</a>
@@ -158,6 +173,9 @@ const conciergePlaces=[
  {name:'Cheong Fatt Tze Blue Mansion',icon:'💙',cat:'photo',lat:5.42162,lon:100.33551,why:'The indigo icon. Even an exterior-only visit delivers.',tags:['photo','history','culture'],query:'Cheong Fatt Tze Blue Mansion'},
  {name:'Khoo Kongsi',icon:'🏛️',cat:'culture',lat:5.41490,lon:100.33939,why:'Intricate clan-house architecture that rewards anyone who looks up.',tags:['culture','history','photo'],query:'Khoo Kongsi Penang'},
  {name:'Little India',icon:'🌈',cat:'culture',lat:5.41642,lon:100.34042,why:'Music, garlands, spice shops and instant atmosphere.',tags:['culture','food','photo','local'],query:'Little India George Town Penang'},
+ {name:'Penang Famous Samosa',icon:'🥟',cat:'food',lat:5.41590,lon:100.34025,why:'A Michelin-listed first bite just off the Little India route.',tags:['food','local'],query:'Penang Famous Samosa 45 Lebuh Queen Penang'},
+ {name:'Tiger Char Koay Teow',icon:'🐯',cat:'food',lat:5.41404,lon:100.33440,why:'A central char koay teow option that fits the George Town loop more easily.',tags:['food','local'],query:'Tiger Char Koay Teow Lebuh Carnarvon Penang'},
+ {name:'Loh Kei Duck Meat Koay Teow Thng',icon:'🦆',cat:'food',lat:5.41680,lon:100.33370,why:'A local-recommended duck noodle stop, especially appealing earlier in the day.',tags:['food','local'],query:'Loh Kei Duck Meat Koay Teow Thng Penang'},
  {name:'Swettenham Pier',icon:'🚢',cat:'ship',lat:5.41970,lon:100.34540,why:'The one recommendation that becomes more attractive every minute after 3:05.',tags:['ship'],query:'Swettenham Pier Cruise Terminal'}
 ];
 function walkingMinutes(km){return Math.max(1,Math.round((km/4.5)*60))}
@@ -291,10 +309,42 @@ function highlyLine(a,status){if(status==='current')return `You made it. Give ${
 function openGrab(name){const destination=name+', Penang';const finish=()=>{setTimeout(()=>alert('Destination copied: '+destination+'\n\nGrab should open. Paste the destination into the Where to? field.'),350)};if(navigator.clipboard){navigator.clipboard.writeText(destination).finally(()=>{window.location.href='grab://open';finish()})}else{prompt('Copy this destination into Grab:',destination)}}
 function copyGrab(name){navigator.clipboard?.writeText(name+', Penang').then(()=>alert('Copied: '+name+' — paste this into Grab.')).catch(()=>prompt('Copy this destination into Grab:',name+', Penang'))}
 function penangNow(){return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kuala_Lumpur'}))}
-function updateClock(){const now=penangNow();penangClock.textContent=now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});const start=new Date('2026-07-14T11:00:00'),end=new Date('2026-07-14T16:00:00');let target=now<start?start:end;let ms=Math.max(0,target-now);days.textContent=Math.floor(ms/86400000);hours.textContent=Math.floor(ms%86400000/3600000);minutes.textContent=Math.floor(ms%3600000/60000);if(now<start){countTitle.textContent='Until July 14 • 11:00 AM';countNote.textContent='That is when you can get off the boat, using Penang time.';riskTitle.textContent='Pre-trip mode';riskText.textContent='Your live shore countdown begins automatically at 11:00 AM.';riskDot.style.background='var(--purple)'}else if(now<=end){goodMorning.classList.add('show');if(appStorage.get('arrivalDismissed','0')!=='1')arrivalOverlay.classList.add('show');countTitle.textContent='Until 4:00 PM all aboard';countNote.textContent='The ship timer is now live.';const left=(end-now)/60000;if(left>100){setRisk('Relax','Plenty of breathing room. Wander a little — just keep an eye on the next move.','var(--green)')}else if(left>65){setRisk('Keep moving','Still comfortable. Maybe do not begin a three-course lunch.','var(--yellow)')}else if(left>35){setRisk('Wrap it up','Time for confident decisions. Finish this stop and angle back toward the pier.','var(--orange)')}else{setRisk('Let’s head back','Grab would look very good right now. Tap Return and go.','var(--red)')}}else{countTitle.textContent='Shore window complete';days.textContent=hours.textContent=minutes.textContent='0';setRisk('Return deadline passed','This timer was for July 14, 2026.','var(--red)')}}
+
+function updateRightNow(){
+  const now=penangNow();
+  const mode=document.getElementById('rightNowMode');
+  if(mode) mode.textContent=(locationMode==='live'?'Live GPS':'Pier Preview');
+  const time=document.getElementById('rnTimeText');
+  if(time) time.textContent=now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+' in Penang';
+  const risk=document.getElementById('rnRiskText');
+  const rt=document.getElementById('riskTitle');
+  if(risk&&rt) risk.textContent=rt.textContent+'. '+(document.getElementById('riskText')?.textContent||'');
+  const wm=document.getElementById('weatherMain');
+  const wa=document.getElementById('weatherAdvice');
+  const wt=document.getElementById('rnWeatherText');
+  if(wt) wt.textContent=(wm?.textContent||'Weather pending')+' · '+(wa?.textContent||'');
+  const next=document.getElementById('rnNextText');
+  if(next){
+    const route=routes[currentRoute];
+    const energy=energies[currentEnergy];
+    if(route&&route.flow) next.textContent='Open Wander Mode for the best GPS-ranked option nearby.';
+    else if(energy&&route) next.textContent=(energy.routeHint||'Your selected energy is shaping today’s recommendations.')+' · '+route.name;
+    else next.textContent='Pick a route, then let Today’s Energy tune the experience.';
+  }
+}
+function updateClock(){const now=penangNow();penangClock.textContent=now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});const start=new Date('2026-07-15T11:00:00'),end=new Date('2026-07-15T16:00:00');let target=now<start?start:end;let ms=Math.max(0,target-now);days.textContent=Math.floor(ms/86400000);hours.textContent=Math.floor(ms%86400000/3600000);minutes.textContent=Math.floor(ms%3600000/60000);if(now<start){countTitle.textContent='Until July 15 • 11:00 AM';countNote.textContent='That is when you can get off the boat, using Penang time.';riskTitle.textContent='Pre-trip mode';riskText.textContent='Your live shore countdown begins automatically at 11:00 AM.';riskDot.style.background='var(--purple)'}else if(now<=end){goodMorning.classList.add('show');if(appStorage.get('arrivalDismissed','0')!=='1')arrivalOverlay.classList.add('show');countTitle.textContent='Until 4:00 PM all aboard';countNote.textContent='The ship timer is now live.';const left=(end-now)/60000;if(left>100){setRisk('Relax','Plenty of breathing room. Wander a little — just keep an eye on the next move.','var(--green)')}else if(left>65){setRisk('Keep moving','Still comfortable. Maybe do not begin a three-course lunch.','var(--yellow)')}else if(left>35){setRisk('Wrap it up','Time for confident decisions. Finish this stop and angle back toward the pier.','var(--orange)')}else{setRisk('Let’s head back','Grab would look very good right now. Tap Return and go.','var(--red)')}}else{countTitle.textContent='Shore window complete';days.textContent=hours.textContent=minutes.textContent='0';setRisk('Return deadline passed','This timer was for July 15, 2026.','var(--red)')}updateRightNow()}
 function setRisk(title,text,color){riskTitle.textContent=title;riskText.textContent=text;riskDot.style.background=color;riskDot.style.color=color}
 function showScreen(id,b){document.querySelectorAll('.screen').forEach(el=>el.classList.remove('active'));const target=document.getElementById(id);if(target)target.classList.add('active');document.querySelectorAll('.navBtn').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');window.scrollTo({top:380,behavior:'smooth'})}
 const panic={late:'You are still okay. Skip Campbell Street first. If you are more than 25 minutes behind, make Blue Mansion exterior-only. At 3:05 PM, optional stops are officially no longer invited.',rain:'Lean into Pinang Peranakan Mansion, Khoo Kongsi and lunch. Save murals and the jetties for a dry window. Museums, unlike hair, do not mind humidity.',hot:'Use Grab for the next transfer, shorten outdoor stops and choose the Peranakan Mansion or a well-rated café for an A/C reset.',hungry:'Go to Toh Soon only if the line is behaving. Otherwise use the Food tab or Nearby and eat well without sacrificing the entire route.',grab:'Move toward a busier road while requesting another car. If the delay reaches 15 minutes after 2:45 PM, begin the return. Future You enjoys not sprinting.',lost:'Breathe. Open the active stop in Maps, or tap Return if it is after 3:05 PM. George Town is compact; dramatic wandering is optional.',bathroom:'Use Nearby and choose a museum, mall or larger café. Tiny market stalls are charming. Their restroom situation may not be.',wifi:'Ask at a larger café or museum and keep Google Maps loaded. Screenshot the pier address before moving on.',photos:'Prioritize Kek Lok Si, Chew Jetty, Armenian Street, Blue Mansion exterior and Little India. Drop museums and shopping.',ship:'Stop adding stops. Tap the yellow Return button, request Grab and head directly to Swettenham Pier.'};
+const foodPlaces=[
+{name:'Penang Famous Samosa',icon:'🥟',kicker:'First bite',badges:['🚢 Right Off the Ship','⭐ Michelin Guide','⚡ Quick Bite'],why:'Freshly fried samosas from a tiny Queen Street stall in Little India. Crisp pastry, fragrant fillings and exactly the right amount of commitment for a first snack after disembarking.',tip:'It is close enough to treat as a spontaneous first bite, not a formal meal. Grab one, keep walking and let lunch remain an option.',time:'Late morning through early evening',price:'Budget',maps:'https://www.google.com/maps/search/?api=1&query=Penang+Famous+Samosa+45+Lebuh+Queen+George+Town+Penang',grab:'Penang Famous Samosa, 45 Lebuh Queen, George Town, Penang'},
+{name:'Loh Kei Duck Meat Koay Teow Th’ng',icon:'🦆',kicker:'Local breakfast favorite',badges:['❤️ Local Recommendation','☀️ Morning Spot','🍜 Comforting'],why:'A clear, aromatic duck broth with silky rice noodles, tender duck and fried shallots. It is the kind of modest bowl that makes sense immediately once you taste it.',tip:'Treat this as a morning-only opportunity and check live hours before committing. If it is closed, do not let breakfast become a cross-island quest.',time:'Best in the morning',price:'Budget',maps:'https://www.google.com/maps/search/?api=1&query=Loh+Kei+Duck+Meat+Koay+Teow+Thng+Penang',grab:'Loh Kei Duck Meat Koay Teow Thng, Penang'},
+{name:'Tiger Char Koay Teow',icon:'🐯',kicker:'Central George Town option',badges:['❤️ Personal Recommendation','🔥 Wok Hei','📍 Carnarvon Street'],why:'A convenient George Town plate of smoky flat rice noodles with egg, sprouts and seafood. It is close enough to several heritage stops to work as lunch without rerouting the entire day.',tip:'This is the practical char koay teow choice when you want the dish but not an expedition. Check the live queue and opening status in Maps.',time:'Lunch-friendly',price:'Budget',maps:'https://maps.app.goo.gl/3f3pBaUWUKAgvRjD7',grab:'Tiger Char Koay Teow, 262-264 Lebuh Carnarvon, George Town, Penang'},
+{name:'Siam Road Char Koay Teow',icon:'🔥',kicker:'Worth planning around',badges:['⭐ Michelin Guide','🔥 Worth Waiting For','⏰ Queue Strategy'],why:'One plate at a time over charcoal, with the smoky wok aroma that made this stall one of Penang’s most talked-about char koay teow stops. The wait is part of the deal.',tip:'Your recommendation was specific: arrive roughly 30 minutes before opening, buy a drink and ask how the queue number system works that day. Excellent food. Not a casual five-minute detour.',time:'Check live hours; often a half-day service',price:'Budget',maps:'https://www.google.com/maps/search/?api=1&query=Siam+Road+Char+Koay+Teow+82+Jalan+Siam+George+Town+Penang',grab:'Siam Road Char Koay Teow, 82 Jalan Siam, George Town, Penang'},
+{name:'Hong Xing No.1 Dim Sum',icon:'🥢',kicker:'Dim sum detour',badges:['❤️ Personal Recommendation','🥟 Made to Order','🚕 Grab Detour'],why:'A broad Cantonese dim sum menu in Tanjung Tokong, known for dishes prepared fresh rather than sitting indefinitely in steam baskets. It is farther from the George Town walking loop, so this is a deliberate food mission.',tip:'Allow time for made-to-order dishes and the Grab ride. This is best when dim sum is the priority, not when you are trying to squeeze it between two heritage stops.',time:'Morning to early afternoon; verify today',price:'Moderate',maps:'https://maps.app.goo.gl/GRJ8VNgRayq3rq7c6?g_st=aw',grab:'Hong Xing No.1 Dim Sum Restaurant, Precinct 10, Tanjung Tokong, Penang'}
+];
+function foodPlaceMarkup(p){const safe=p.grab.replace(/'/g,"&#39;");return `<article class="card foodPlace"><div class="foodPlaceHead"><div class="eyebrow">${p.kicker}</div><h3>${p.icon} ${p.name}</h3><div class="foodBadges">${p.badges.map(b=>`<span class="foodBadge">${b}</span>`).join('')}</div></div><div class="foodPlaceBody"><div class="whyLove">Why go?</div><div class="muted">${p.why}</div><div class="tip"><strong>💡 Insider Tip</strong><br>${p.tip}</div><div class="quickFacts"><div class="fact">⏰ ${p.time}<small>Best timing</small></div><div class="fact">💵 ${p.price}<small>Price level</small></div></div><div class="foodPlaceActions"><a class="btn primary" target="_blank" rel="noopener" href="${p.maps}">📍 Maps</a><button class="btn grabBtn" data-destination="${safe}">🚖 Grab</button></div></div></article>`}
+function renderFoodShortlist(){const el=document.getElementById('foodShortlist');if(!el)return;el.innerHTML=`<div class="foodLocalNote"><strong>❤️ Real recommendations</strong><br><span class="muted">These came from people who know Penang, with Michelin recognition noted where verified. Check live hours before making a detour.</span></div><div class="heading"><h2>Andrew’s shortlist</h2><div class="muted">A small list with actual reasons to go.</div></div><div class="foodShortlist">${foodPlaces.map(foodPlaceMarkup).join('')}</div><div class="heading"><h2>If you only eat three things</h2></div><div class="foodThree"><div class="foodThreeItem"><span class="foodThreeNum">1</span><div><strong>Char Koay Teow</strong><div class="muted">Smoky noodles and Penang’s most competitive food opinion.</div></div></div><div class="foodThreeItem"><span class="foodThreeNum">2</span><div><strong>Duck Koay Teow Th’ng</strong><div class="muted">A gentler, brothier counterpoint to the wok-heavy classics.</div></div></div><div class="foodThreeItem"><span class="foodThreeNum">3</span><div><strong>Cendol</strong><div class="muted">Cold, sweet and extremely persuasive in the afternoon heat.</div></div></div></div>`;bindDynamicButtons();}
 const foods=[
 {name:'Kaya Toast',say:'KAI-yah toast',desc:'Charcoal-grilled or toasted bread layered with butter and kaya, a coconut-and-egg jam.',expect:'Crisp, buttery, sweet and custardy',spice:'None',when:'Breakfast or snack',price:'RM 4–9',likes:'French toast, coconut desserts',tags:['breakfast','comfort','sweet'],take:'Breakfast, snack, emotional support. It works for all three.'},
 {name:'Half-Boiled Eggs',say:'half-boiled eggs',desc:'Very soft eggs seasoned with soy sauce and white pepper, usually served with toast for dipping.',expect:'Silky, savory and richer than they look',spice:'None',when:'Breakfast',price:'RM 3–7',likes:'Soft eggs, savory breakfasts',tags:['breakfast','protein','comfort'],take:'They look unfinished. They are completely on purpose.'},
@@ -384,7 +434,7 @@ function foodWisdom(f){
  return ['It earns its place by being familiar enough to enjoy and local enough to remember.','Skip if the core flavor profile already sounds like a personal attack.','🟢 Friendly first choice'];
 }
 function foodMarkup(f){const [love,skip,first]=foodWisdom(f);return `<div class="foodItem"><h4>${f.name}</h4><div class="foodTags">Say it: ${f.say}</div><div class="muted" style="margin-top:8px"><strong>What you’re ordering:</strong> ${f.desc}</div><div class="foodMetaGrid"><div class="foodMeta"><strong>Expect</strong><br>${f.expect}</div><div class="foodMeta"><strong>Spice</strong><br>${f.spice}</div><div class="foodMeta"><strong>Best time</strong><br>${f.when}</div><div class="foodMeta"><strong>Typical price</strong><br>${f.price}</div></div><div class="muted"><strong>If you like:</strong> ${f.likes}</div><div class="smartStrip"><strong>⭐ Why locals love it</strong><br>${love}<br><br><strong>${first}</strong><br><br><strong>Skip if…</strong> ${skip}</div><div class="highlySay" style="margin-bottom:0"><strong>🤖 Highly says</strong><br>${f.take}</div></div>`}
-function renderFoodScreen(){const list=activeFoodFilter==='all'?foods:foods.filter(f=>f.tags.includes(activeFoodFilter));document.getElementById('foodScreenList').innerHTML=`<div class="foodFilters">${foodFilters.map(x=>`<button class="foodFilter ${x[0]===activeFoodFilter?'active':''}" onclick="selectFoodFilter('${x[0]}')">${x[1]}</button>`).join('')}</div>${list.map(foodMarkup).join('')}`}
+function renderFoodScreen(){renderFoodShortlist();const list=activeFoodFilter==='all'?foods:foods.filter(f=>f.tags.includes(activeFoodFilter));document.getElementById('foodScreenList').innerHTML=`<div class="foodFilters">${foodFilters.map(x=>`<button class="foodFilter ${x[0]===activeFoodFilter?'active':''}" onclick="selectFoodFilter('${x[0]}')">${x[1]}</button>`).join('')}</div>${list.map(foodMarkup).join('')}`;bindDynamicButtons()}
 
 async function loadWeather(){
  const card=document.getElementById('weatherCard');
@@ -410,7 +460,7 @@ function hideHighlyNudge(){const el=document.getElementById('highlyNudge');if(el
 function showHighlyNudge(message,key=''){if(key&&key===lastNudgeKey)return;lastNudgeKey=key||message;const el=document.getElementById('highlyNudge'),box=document.getElementById('highlyNudgeText');if(!el||!box)return;box.innerHTML=`<strong>Highly noticed something.</strong><span>${message}</span>`;el.classList.add('show');clearTimeout(highlyNudgeTimer);highlyNudgeTimer=setTimeout(hideHighlyNudge,8500)}
 function contextualNudge(trigger='timer'){
  const now=penangNow(),mins=now.getHours()*60+now.getMinutes(),e=energyProfiles[activeEnergy],r=routes[activeRoute];let message='',key='';
- if(now<new Date('2026-07-14T11:00:00')){message='Preview mode is on. Distances are staged from Swettenham Pier, so you can plan without a 9,000-mile walk.';key='preview'}
+ if(now<new Date('2026-07-15T11:00:00')){message='Preview mode is on. Distances are staged from Swettenham Pier, so you can plan without a 9,000-mile walk.';key='preview'}
  else if(mins>=915){message='The day has been excellent. The pier would now like a reunion.';key='return'}
  else if(latestWeather&&latestWeather.feels>=95){message='The humidity is fully committed. An A/C stop or an iced drink would be a very elegant next move.';key='heat'}
  else if(latestWeather&&latestWeather.rain>=55){message='Rain is circling. Protect the indoor stops and let the street art wait for a drier moment.';key='rain'}
@@ -425,5 +475,5 @@ function contextualNudge(trigger='timer'){
 function closeDrawer(){drawer.classList.remove('open')}
 setLocationMode('preview',pierPosition);if(routes[activeRoute]?.flow)startWanderTracking();renderRoutes();renderFoodScreen();updateClock();loadWeather();refreshLocation(false);setInterval(updateClock,1000);setInterval(renderRoutes,60000);setTimeout(()=>contextualNudge('welcome'),4500);setInterval(()=>contextualNudge('timer'),120000);
 </script>
-<div style="display:none" id="buildVersion">v1.7.2-wander-stable</div></body>
+<div style="display:none" id="buildVersion">v1.8-penang-eats</div></body>
 </html>
