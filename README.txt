@@ -1,3 +1,13 @@
-HighLevel Penang Takeover v3.0.1 — Weather Rescue
+HighLevel Penang Takeover — v3.0.2 Weather Pivot
 
-Weather now uses three data paths (two Open-Meteo formats plus wttr.in), a 12-hour cache, and a live weather snapshot fallback. Upload index.html and images/ to the GitHub repository root. GitHub Pages: main / root.
+GitHub Pages upload:
+1. Upload index.html and the images folder to the repository root.
+2. Keep GitHub Pages set to main / (root).
+
+Weather behavior:
+- Live Open-Meteo current conditions
+- Open-Meteo legacy fallback
+- wttr.in JSON fallback
+- Saved live forecast for up to 12 hours
+- Seasonal Penang guidance if every live source is unavailable
+- Human rain guidance and itinerary pivot recommendations
